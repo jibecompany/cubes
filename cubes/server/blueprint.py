@@ -488,7 +488,10 @@ def cube_report(cube_name):
         logger.info("using cell from report specification (URL parameters "
                     "are ignored)")
     else:
-        cell = g.cell
+        if not g.cell:
+            cell = Cell(g.cube)
+        else:
+            cell = g.cell
 
     result = g.browser.report(cell, queries)
 
